@@ -19,23 +19,19 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references:{
-          model:'Users',
+        references: {
+          model: 'Users',
           key: 'id',
         },
       },
-      createdAt: {
+      published: {
         allowNull: false,
-        type: Sequelize.DATE,
-        allowNull: false,
-        field:'published',
+        type: Sequelize.DATE
       },
-      updatedAt: {
+      updated: {
         allowNull: false,
-        type: Sequelize.DATE,
-        allowNull: false,
-        field: 'updated',
-      }
+        type: Sequelize.DATE
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
