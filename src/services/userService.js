@@ -2,6 +2,11 @@ const { User } = require('../database/models');
 
 const getAll = async () => User.findAll({ attributes: { exclude: ['password'] } });
 
+const getById = async (id) => {
+  const result = User.findOne({ where: { id }, attributes: { exclude: ['password'] } });
+  return result;
+};
+
 const createUser = async ({ displayName, email, password, image }) => {
   const [usr, created] = await User.findOrCreate({
     where: { email },
@@ -11,6 +16,6 @@ const createUser = async ({ displayName, email, password, image }) => {
   return usr.dataValues;
 };
 
-module.exports = { getAll, createUser };
+module.exports = { getAll, getById, createUser };
 
 // findOrCreate: https://sequelize.org/docs/v6/core-concepts/model-querying-finders/#findorcreate
