@@ -1,6 +1,15 @@
 const userService = require('../services/userService');
 const jwtService = require('../services/jwtService');
 
+const getAll = async (req, res) => {
+  try {
+    const result = await userService.getAll();
+    return res.status(200).json(result);
+  } catch (error) {
+    return res.status(500);
+  }
+};
+
 const create = async (req, res) => {
   try {
     const result = await userService.createUser(req.body);
@@ -14,5 +23,6 @@ const create = async (req, res) => {
   }
 };
 module.exports = {
+  getAll,
   create,
 };
