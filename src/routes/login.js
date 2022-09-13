@@ -4,6 +4,6 @@ const loginController = require('../controllers/loginController');
 
 const login = Router();
 
-login.post('/login', mdw.validateLogin, loginController.login);
+login.post('/', mdw.validateLogin, loginController.login);
 
 module.exports = login;
