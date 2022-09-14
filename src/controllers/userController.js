@@ -1,4 +1,7 @@
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 const userService = require('../services/userService');
+const postService = require('../services/postService');
 const jwtService = require('../services/jwtService');
 
 const getAll = async (req, res) => {
@@ -35,8 +38,11 @@ const create = async (req, res) => {
 };
 
 const remove = async (req, res) => {
-  const { id } = req.params;
-  await userService.exclui(id);
+  const token = req.headers.authorization;
+  const secret = process.env.JWT_SECRET;
+  const user = jwt.verify(token, secret);
+  const userId = await postService.getUserId(user.data);
+  await userService.exclui(userId);
   return res.status(204).send();
 };
 module.exports = {

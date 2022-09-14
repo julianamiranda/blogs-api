@@ -57,10 +57,8 @@ const create = async ({ title, content, categoryIds, email }) => {
   return transactionResult;
 };
 
-const exclui = async (id) => {
-  await BlogPost.destroy({
-    where: { id },
-  });
+const remove = async (id) => {
+  await BlogPost.destroy({ where: { id } });
 };
 
-module.exports = { getAll, getById, verifyUser, update, verifyCategory, create, exclui };
+module.exports = { getAll, getById, verifyUser, update, verifyCategory, create, getUserId, remove };

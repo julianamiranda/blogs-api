@@ -8,6 +8,6 @@ const user = Router();
 user.get('/', tk.validateToken, userController.getAll);
 user.get('/:id', tk.validateToken, userController.getById);
 user.post('/', mdw.validateUser, userController.create);
-user.delete('/:id', tk.validateToken, userController.remove);
+user.delete('/me', tk.validateToken, userController.remove);
 
 module.exports = user;

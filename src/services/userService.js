@@ -17,9 +17,7 @@ const createUser = async ({ displayName, email, password, image }) => {
 };
 
 const exclui = async (id) => {
-  await User.destroy({
-    where: { id },
-  });
+  await User.destroy({ where: { id } });
 };
 
 module.exports = { getAll, getById, createUser, exclui };
