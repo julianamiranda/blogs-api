@@ -67,14 +67,13 @@ const remove = async (req, res) => {
 
     const secret = process.env.JWT_SECRET;
     const user = jwt.verify(token, secret);
-    const userId = await postService.getUserId(user.data);
 
     const check = await postService.getById(id);
     if (!check) return res.status(404).json({ message: 'Post does not exist' });
 
-    const test = await postService.verifyUser(userId, user.data);
+    const test = await postService.verifyUser(id, user.data); // id do post e email
+    console.log(test);
     if (!test) return res.status(401).json({ message: 'Unauthorized user' });
-    console.log('caiu aq');
 
     await postService.remove(id);
 

@@ -23,7 +23,6 @@ const getById = async (id) => {
 
 const verifyUser = async (postId, email) => {
   const { user } = await getById(postId);
-  console.log(user.email);
   if (email !== user.email) return null;
   return true;
 };
