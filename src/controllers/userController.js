@@ -33,8 +33,15 @@ const create = async (req, res) => {
     return res.status(500);
   }
 };
+
+const remove = async (req, res) => {
+  const { id } = req.params;
+  await userService.exclui(id);
+  return res.status(204).send();
+};
 module.exports = {
   getAll,
   getById,
   create,
+  remove,
 };

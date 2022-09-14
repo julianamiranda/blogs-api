@@ -16,6 +16,12 @@ const createUser = async ({ displayName, email, password, image }) => {
   return usr.dataValues;
 };
 
-module.exports = { getAll, getById, createUser };
+const exclui = async (id) => {
+  await User.destroy({
+    where: { id },
+  });
+};
+
+module.exports = { getAll, getById, createUser, exclui };
 
 // findOrCreate: https://sequelize.org/docs/v6/core-concepts/model-querying-finders/#findorcreate
